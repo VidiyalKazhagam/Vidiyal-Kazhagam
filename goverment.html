@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidiyal Kazhagam - For a Brighter Future</title>
+    <style>
+        /* Google Fonts - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f2f5, #e6e9f0, #e0e4eb);
+            background-size: 200% 200%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header and Navigation */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+            border-bottom: 2px solid #ff5722;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: #ff5722;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+            animation: pulse-glow 2s infinite ease-in-out alternate;
+        }
+
+        @keyframes pulse-glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 87, 34, 0.5), 0 0 10px rgba(255, 87, 34, 0.3);
+            }
+            to {
+                text-shadow: 0 0 10px rgba(255, 87, 34, 0.8), 0 0 20px rgba(255, 87, 34, 0.6);
+            }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        nav {
+            background-color: #ff5722;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            animation: slide-down 0.5s ease-out forwards;
+        }
+
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 10px 15px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #fff;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Main content and promise cards */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff5722;
+            margin: 40px 0 20px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #ff5722;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .promises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .promise-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #ff5722;
+            animation: fade-in-up 0.5s ease-out forwards;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .promise-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .promise-card h3 {
+            font-size: 1.5rem;
+            color: #ff5722;
+            margin-bottom: 10px;
+        }
+
+        .promise-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Page specific styles and animations */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .promise-content {
+            background: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+            animation: fade-in 0.6s ease-out forwards;
+        }
+        
+        .promise-content .five-year-plan {
+            margin-top: 30px;
+            border-top: 2px solid #ff5722;
+            padding-top: 20px;
+        }
+
+        .five-year-plan h3 {
+            font-size: 1.5rem;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+        
+        .five-year-plan ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .five-year-plan ul li {
+            background-color: #f8f9fa;
+            border-left: 3px solid #ff5722;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .five-year-plan ul li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .five-year-plan ul li strong {
+            color: #ff5722;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .promise-content h2 {
+            font-size: 2rem;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+
+        .promise-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .promise-card {
+                padding: 20px;
+            }
+            .promise-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="homepage" class="page active">
+            <header>
+                <h1>Vidiyal Kazhagam</h1>
+                <p>Working towards a brighter future for all</p>
+            </header>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showPage('homepage')">Home</a></li>
+                </ul>
+            </nav>
+
+            <h2 class="section-title">Our Key Promises</h2>
+
+            <div class="promises-grid">
+                <div class="promise-card" onclick="showPage('neet')">
+                    <h3>Abolishing NEET</h3>
+                    <p>Ensuring fair educational opportunities for all students regardless of their background.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('tasmac')">
+                    <h3>Abolishing TASMAC</h3>
+                    <p>Reducing alcohol dependency and promoting healthier communities.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('caste')">
+                    <h3>Eradicating Caste System</h3>
+                    <p>Creating an egalitarian society free from discrimination and prejudice.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('education')">
+                    <h3>Improving Education System</h3>
+                    <p>Revamping the educational framework to foster creativity and critical thinking.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('corruption')">
+                    <h3>Corruption-Free Governance</h3>
+                    <p>Establishing transparent systems to eliminate corruption at all levels.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('human-rights')">
+                    <h3>Protecting Human Rights</h3>
+                    <p>Safeguarding the dignity and rights of every individual in society.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('slum-upgrade')">
+                    <h3>Upgrading Slum Areas</h3>
+                    <p>Transforming slums into sustainable communities with proper amenities.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('sports')">
+                    <h3>Promoting Sports</h3>
+                    <p>Investing in sports infrastructure and nurturing athletic talent across the state.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('civic-humanity')">
+                    <h3>Fostering Civic Humanity</h3>
+                    <p>Encouraging community engagement and social responsibility.</p>
+                </div>
+
+                <div class="promise-card" onclick="showPage('economic-system')">
+                    <h3>Enhancing Economic System</h3>
+                    <p>Creating sustainable economic growth that benefits all sections of society.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="neet" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Abolishing NEET</h2>
+                <p>NEET has created significant barriers for students from rural areas and disadvantaged backgrounds. We believe that education should be accessible to all, and a single entrance exam should not determine a student's future. Our plan includes establishing state-level medical entrance exams that consider regional educational patterns, implementing quota systems to ensure representation from all communities, improving the quality of education in government schools to prepare students better, and creating alternative pathways for medical admissions that consider holistic student performance.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Form a task force to study and draft a new state-level medical admissions bill. Engage with educators, students, and parents to gather feedback and build consensus.</li>
+                        <li><strong>Year 2:</strong> Pass the new admissions bill in the state legislature. Begin the process of setting up a new state medical admissions board and preparing the framework for a state-level exam.</li>
+                        <li><strong>Year 3:</strong> Implement the first phase of the new state-level medical entrance exam. Start pilot programs to improve the quality of science education in government schools, focusing on districts with low representation.</li>
+                        <li><strong>Year 4:</strong> Fully implement the state-level exam across the state. Expand the education quality improvement programs and introduce a scholarship fund for students from economically disadvantaged backgrounds.</li>
+                        <li><strong>Year 5:</strong> Evaluate the success of the new system. Work to improve the curriculum and assessment methods based on performance data to ensure all students have an equal and fair opportunity.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="tasmac" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Abolishing TASMAC</h2>
+                <p>TASMAC shops have contributed to numerous social issues including domestic violence, financial problems, and health issues. We propose a phased approach to reduce alcohol dependency in our society. Our strategy includes gradually reducing the number of TASMAC outlets across the state, implementing comprehensive rehabilitation programs for alcohol-dependent individuals, promoting alternative entertainment and social activities, and creating economic opportunities for those employed in TASMAC to transition to other industries.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Halt the opening of any new TASMAC outlets and begin the closure of outlets in residential areas and near educational institutions. Launch a statewide public awareness campaign on the negative impacts of alcohol consumption.</li>
+                        <li><strong>Year 2:</strong> Initiate a phased closure of 20% of all TASMAC outlets. Establish and fund new government-run rehabilitation centers in every district, offering free treatment and counseling.</li>
+                        <li><strong>Year 3:</strong> Close an additional 25% of outlets. Implement job transition programs for TASMAC employees, providing vocational training and placement assistance in new sectors.</li>
+                        <li><strong>Year 4:</strong> Close another 25% of outlets. Introduce subsidies for businesses that employ former TASMAC workers. Expand community-based programs that offer healthy recreational and social alternatives.</li>
+                        <li><strong>Year 5:</strong> Review the social and economic impact of the phased closure. Work with communities to shut down the remaining outlets on a case-by-case basis while ensuring a robust and accessible network of support and rehabilitation services.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="caste" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Eradicating Caste System</h2>
+                <p>The caste system continues to be a blight on our society, creating discrimination and limiting opportunities for many. We are committed to creating a truly egalitarian society. Our approach includes strict enforcement of anti-discrimination laws, educational reforms that teach the value of equality from a young age, economic empowerment programs for historically disadvantaged communities, and promoting inter-caste marriages and social integration through incentives.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Strengthen existing laws against caste-based discrimination with stricter penalties. Launch a comprehensive, state-funded campaign to promote equality and challenge caste prejudices in urban and rural areas.</li>
+                        <li><strong>Year 2:</strong> Introduce a new curriculum component in all state schools focusing on social harmony, equality, and the history of social reform movements. Establish a dedicated fast-track court system for caste-based crime.</li>
+                        <li><strong>Year 3:</strong> Roll out large-scale economic empowerment programs, including skill development and micro-loans, specifically for historically disadvantaged communities. Provide additional scholarships for students from these communities pursuing higher education.</li>
+                        <li><strong>Year 4:</strong> Offer significant government incentives and public recognition for inter-caste marriages to promote social integration. Partner with NGOs and community leaders to create safe spaces for dialogue and social mixing.</li>
+                        <li><strong>Year 5:</strong> Conduct a state-wide social audit to measure progress and identify remaining challenges. Work to remove any discriminatory practices embedded in government administration and public institutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="education" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Improving Education System</h2>
+                <p>Our current education system focuses too much on rote learning and not enough on critical thinking and creativity. We need to prepare our students for the challenges of the 21st century. Our reforms include reducing curriculum burden and focusing on conceptual understanding, introducing vocational training from the secondary school level, improving teacher training and support systems, and investing in digital infrastructure for schools across the state.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Form an expert committee to overhaul the school curriculum, focusing on reducing memorization and increasing project-based learning. Launch a pilot program for vocational training in 100 schools.</li>
+                        <li><strong>Year 2:</strong> Implement the new curriculum across all government schools. Expand the vocational training program to all secondary schools and introduce certifications that are recognized by industry.</li>
+                        <li><strong>Year 3:</strong> Establish new teacher training academies with a focus on modern pedagogical techniques and digital literacy. Mandate and fund continuous professional development for all teachers.</li>
+                        <li><strong>Year 4:</strong> Provide every government school with high-speed internet and digital learning tools. Launch a statewide portal for online educational resources and teacher collaboration.</li>
+                        <li><strong>Year 5:</strong> Evaluate student outcomes based on the new curriculum and a revised, more holistic assessment system. Secure partnerships with private companies to create internship and job opportunities for students with vocational skills.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="corruption" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Corruption-Free Governance</h2>
+                <p>Corruption has been a major hindrance to development and erodes public trust in government institutions. We are committed to creating transparent, accountable systems. Our measures include implementing e-governance solutions for all citizen-government interactions, establishing independent anti-corruption bodies with real power, creating whistleblower protection programs, and implementing regular social audits of government programs and schemes.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Launch a new e-governance portal for all public services, including licenses, permits, and bill payments, to reduce human interaction and potential for bribery. Establish a dedicated helpline for citizens to report corruption.</li>
+                        <li><strong>Year 2:</strong> Empower an existing or create a new, fully independent anti-corruption commission with the legal authority to investigate and prosecute government officials at all levels without political interference.</li>
+                        <li><strong>Year 3:</strong> Implement a robust whistleblower protection act that guarantees the anonymity and safety of those who report corruption. Introduce mandatory third-party social audits for all major government projects and schemes.</li>
+                        <li><strong>Year 4:</strong> Automate as many government processes as possible, from land registration to public distribution systems, using secure, blockchain-based technology to ensure transparency and prevent tampering.</li>
+                        <li><strong>Year 5:</strong> Conduct a comprehensive review of all government departments to identify remaining vulnerabilities to corruption. Reward departments and officials with a proven track record of transparency and accountability.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="human-rights" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Protecting Human Rights</h2>
+                <p>Safeguarding the dignity and rights of every individual is our fundamental duty. We will establish a dedicated human rights commission with extensive powers to investigate and prosecute violations. This includes strengthening legal protections for marginalized communities, ensuring fair and swift justice, and launching public awareness campaigns to foster a culture of respect and equality. We will also work with international bodies to adopt best practices in human rights protection.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Form a new State Human Rights Commission with powers to investigate violations and recommend prosecution. Review and amend existing laws to better protect marginalized communities.</li>
+                        <li><strong>Year <strong>2:</strong></strong> Launch a multi-media public awareness campaign focusing on human rights, with specific attention to the rights of women, children, and LGBTQ+ individuals.</li>
+                        <li><strong>Year <strong>3:</strong></strong> Establish fast-track courts dedicated to human rights cases to ensure swift justice. Provide training to police and judicial officers on human rights principles and fair treatment of all citizens.</li>
+                        <li><strong>Year <strong>4:</strong></strong> Partner with international human rights organizations to learn and implement global best practices. Set up a state-level Human Rights Fund to provide legal aid and support to victims.</li>
+                        <li><strong>Year <strong>5:</strong></strong> Conduct a comprehensive audit of all state-run institutions to ensure compliance with human rights standards. Publish an annual report on the state of human rights in the region.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="slum-upgrade" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Upgrading Slum Areas</h2>
+                <p>We are committed to transforming slums into sustainable, livable communities with proper amenities. Our plan involves providing residents with secure land titles and housing, investing in infrastructure like clean water, sanitation, and electricity, and building community centers and schools. We will work directly with slum residents to ensure their needs and concerns are at the forefront of every development project, fostering a sense of ownership and pride.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Begin a comprehensive survey of all slum areas to document population, infrastructure, and specific needs. Start a pilot project to redevelop one slum area, in partnership with residents.</li>
+                        <li><strong>Year 2:</strong> Based on the pilot's success, launch similar projects in 10 major cities. Begin the process of providing secure, legal land titles to eligible slum residents.</li>
+                        <li><strong>Year 3:</strong> Allocate a significant portion of the state budget to improve infrastructure in slum areas, including laying new water and sewer lines, and providing reliable electricity connections.</li>
+                        <li><strong>Year 4:</strong> Construct new, modern housing complexes with essential amenities in partnership with private builders. Build community centers, schools, and health clinics in all major upgraded areas.</li>
+                        <li><strong>Year 5:</strong> Ensure that all upgraded areas have access to basic services and are integrated into the city's economic and social fabric. Begin a second phase of upgrades based on lessons learned.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="sports" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Promoting Sports</h2>
+                <p>Investing in sports is investing in the health and future of our youth. We will build modern sports facilities and academies in every district to nurture athletic talent. Our government will provide scholarships and financial support for promising athletes, and we will make physical education a mandatory and well-funded part of the school curriculum. Our goal is to create a sporting culture that encourages participation from all ages and backgrounds.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Establish a State Sports Development Authority to oversee and fund all sports-related initiatives. Begin a survey to identify existing sports facilities and their needs for upgrades.</li>
+                        <li><strong>Year 2:</strong> Allocate funds to build 10 new multi-sport complexes in rural and urban areas. Introduce mandatory physical education classes in all government schools.</li>
+                        <li><strong>Year 3:</strong> Launch a state-level sports scholarship program to support talented athletes from all backgrounds. Begin constructing specialized academies for popular sports like cricket, football, and kabaddi.</li>
+                        <li><strong>Year 4:</strong> Organize regular state-level tournaments and competitions to provide a platform for young athletes to showcase their talent. Partner with national and international sports bodies for coaching and training programs.</li>
+                        <li><strong>Year 5:</strong> Create a state-sponsored professional league for a few key sports. Ensure all districts have at least one high-quality sports facility and a strong network of trainers and coaches to support aspiring athletes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="civic-humanity" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Fostering Civic Humanity</h2>
+                <p>A society thrives when its citizens are engaged and responsible. We will launch initiatives to encourage community engagement and social responsibility, such as volunteer programs for public works, clean-up drives, and mentorship programs for youth. We believe that by working together, we can build a more compassionate and harmonious society where everyone feels a sense of belonging and contributes to the common good.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Establish a "Civic Humanity" initiative office to coordinate volunteer efforts. Launch a major campaign to clean up public spaces, starting with a few pilot cities.</li>
+                        <li><strong>Year 2:</strong> Partner with schools and colleges to create mandatory social service hours for students. Introduce a government reward system for individuals and communities that show exceptional civic responsibility.</li>
+                        <li><strong>Year 3:</strong> Launch a state-wide mentorship program connecting experienced professionals with youth from disadvantaged communities. Fund and support local community-led projects for social welfare.</li>
+                        <li><strong>Year 4:</strong> Expand the clean-up and beautification drives to all urban areas. Implement a "Community Voice" program where citizens can propose and vote on local improvement projects.</li>
+                        <li><strong>Year 5:</strong> Measure the overall impact of the initiatives on community harmony and public well-being. Work to integrate civic values into all levels of public administration and education.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="economic-system" class="page">
+            <button class="back-button" onclick="showPage('homepage')">Back to Home</button>
+            <div class="promise-content">
+                <h2>Enhancing Economic System</h2>
+                <p>We will create a sustainable economic system that benefits all sections of society, not just a few. Our strategy involves promoting small and medium-sized enterprises (SMEs) with tax incentives and easy access to credit, investing in renewable energy and green technologies, and modernizing agricultural practices to ensure food security. We will also focus on upskilling the workforce to meet the demands of the digital economy, creating high-value jobs for our youth.</p>
+                
+                <div class="five-year-plan">
+                    <h3>Our 5-Year Action Plan</h3>
+                    <ul>
+                        <li><strong>Year 1:</strong> Introduce a new policy offering significant tax breaks and simplified licensing for SMEs. Launch a state-funded venture capital fund to support new startups, particularly in green technology.</li>
+                        <li><strong>Year 2:</strong> Invest in building a state-wide network of business incubators and innovation hubs. Begin large-scale infrastructure projects for solar and wind energy production.</li>
+                        <li><strong>Year 3:</strong> Launch a "Digital Skills for All" program to provide free vocational training in coding, data science, and digital marketing to youth and unemployed workers.</li>
+                        <li><strong>Year 4:</strong> Modernize agricultural practices by providing subsidies for new farming technologies like drip irrigation and smart sensors. Establish a direct-to-consumer online marketplace for farmers.</li>
+                        <li><strong>Year 5:</strong> Conduct a comprehensive economic audit to measure growth and income distribution. Adjust policies to ensure economic benefits are reaching all communities and that a diversified, resilient economy has been established.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Vidiyal Kazhagam. All rights reserved.</p>
+            <p>Working towards a brighter future for all citizens.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const newPage = document.getElementById(pageId);
+            if (newPage) {
+                newPage.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
